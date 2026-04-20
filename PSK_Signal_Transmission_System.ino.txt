@@ -1,0 +1,35 @@
+// PSK Signal Transmission System
+
+const int carrierPin = 9;
+
+String data = "1100101";
+
+int phaseShift0 = 0;
+int phaseShift1 = 180;
+
+void setup() {
+  pinMode(carrierPin, OUTPUT);
+}
+
+void loop() {
+
+  for (int i = 0; i < data.length(); i++) {
+
+    if (data[i] == '1') {
+      // Phase shifted signal (simulated using delay inversion)
+      tone(carrierPin, 1000);
+      delay(300);
+      noTone(carrierPin);
+      delay(100);
+    } else {
+      tone(carrierPin, 1000);
+      delay(200);
+      noTone(carrierPin);
+      delay(200);
+    }
+
+    delay(300);
+  }
+
+  delay(2000);
+}
